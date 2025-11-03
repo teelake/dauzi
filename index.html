@@ -45,7 +45,7 @@
         <div class="flex items-center justify-between h-20">
           <a href="index.html" class="flex items-center gap-4" aria-label="Dauzi Consulting home">
             <img src="assets/img/dauzi-logo.png" alt="Dauzi Consulting Logo" class="h-12 w-auto" loading="lazy" />
-            <span class="font-semibold tracking-tight">Dauzi Consulting</span>
+            <span class="serif font-semibold tracking-tight">Dauzi Consulting</span>
           </a>
           <button class="lg:hidden inline-flex items-center justify-center rounded-md p-2 text-slate-700 hover:bg-slate-100 focus:outline-none" id="mobile-menu-button" aria-label="Open menu" aria-expanded="false">
             <i data-lucide="menu" class="w-6 h-6"></i>
@@ -77,7 +77,7 @@
         <div class="absolute inset-0 -z-10 bg-gradient-to-br from-amber-50 via-white to-sky-50"></div>
         <div class="pointer-events-none absolute -top-20 -left-20 h-72 w-72 rounded-full bg-gradient-to-br from-[var(--brand)]/40 to-amber-300/40 blur-3xl"></div>
         <div class="pointer-events-none absolute -bottom-16 -right-16 h-72 w-72 rounded-full bg-gradient-to-br from-sky-300/40 to-emerald-300/40 blur-3xl"></div>
-        <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-14 lg:py-20">
+        <div class="w-full px-4 sm:px-6 lg:px-10 py-14 lg:py-20">
           <div class="relative">
             <div class="overflow-hidden rounded-2xl ring-1 ring-slate-200">
               <div class="relative">
@@ -101,6 +101,10 @@
                     <div>
                       <h2 class="serif text-4xl sm:text-5xl font-bold leading-tight text-slate-900">Tax strategies that stand up to audit.</h2>
                       <p class="mt-4 text-slate-700 text-lg max-w-xl">Defendable positions, documentation, and smooth engagement with authorities.</p>
+                      <div class="mt-6 flex flex-wrap gap-3">
+                        <a href="contact.html" class="inline-flex items-center gap-2 rounded-lg bg-[var(--brand)] px-5 py-3 text-white font-medium shadow-sm hover:bg-[var(--brand-2)] transition" onclick="if(window.gtag){gtag('event','click',{event_category:'CTA',event_label:'Get in Touch - Hero Slide 2'});}"><i data-lucide="mail" class="w-5 h-5"></i> Get in Touch</a>
+                        <a href="services.html#tax" class="inline-flex items-center gap-2 rounded-lg px-5 py-3 border border-slate-300 text-slate-700 font-medium hover:bg-slate-50 transition"><i data-lucide="shield" class="w-5 h-5"></i> Tax Services</a>
+                      </div>
                     </div>
                     <div>
                       <img src="https://images.unsplash.com/photo-1523958203904-cdcb402031fd?q=80&w=1600&auto=format&fit=crop" alt="Tax and documentation" class="w-full h-auto rounded-xl bw bw-hover" loading="lazy" />
@@ -111,6 +115,10 @@
                     <div>
                       <h2 class="serif text-4xl sm:text-5xl font-bold leading-tight text-slate-900">Training that changes behavior.</h2>
                       <p class="mt-4 text-slate-700 text-lg max-w-xl">Hands‑on programs with pre‑work and post‑session support for lasting impact.</p>
+                      <div class="mt-6 flex flex-wrap gap-3">
+                        <a href="training.html" class="inline-flex items-center gap-2 rounded-lg bg-[var(--brand)] px-5 py-3 text-white font-medium shadow-sm hover:bg-[var(--brand-2)] transition" onclick="if(window.gtag){gtag('event','click',{event_category:'CTA',event_label:'Explore Training - Hero Slide 3'});}"><i data-lucide="graduation-cap" class="w-5 h-5"></i> Explore Training</a>
+                        <a href="contact.html" class="inline-flex items-center gap-2 rounded-lg px-5 py-3 border border-slate-300 text-slate-700 font-medium hover:bg-slate-50 transition" onclick="if(window.gtag){gtag('event','click',{event_category:'CTA',event_label:'Request a Program - Hero Slide 3'});}"><i data-lucide="send" class="w-5 h-5"></i> Request a Program</a>
+                      </div>
                     </div>
                     <div>
                       <img src="https://images.unsplash.com/photo-1551836022-4c4c79ecde51?q=80&w=1600&auto=format&fit=crop" alt="Training session" class="w-full h-auto rounded-xl bw bw-hover" loading="lazy" />
@@ -118,9 +126,9 @@
                   </div>
                 </div>
                 <!-- Controls -->
-                <button class="prev absolute left-3 top-1/2 -translate-y-1/2 rounded-full bg-white/80 p-2 shadow hover:bg-white" aria-label="Previous slide"><i data-lucide="chevron-left" class="w-5 h-5"></i></button>
-                <button class="next absolute right-3 top-1/2 -translate-y-1/2 rounded-full bg-white/80 p-2 shadow hover:bg-white" aria-label="Next slide"><i data-lucide="chevron-right" class="w-5 h-5"></i></button>
-                <div class="indicators absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-2"></div>
+                <button class="prev absolute left-2 sm:left-3 md:left-4 lg:left-1/2 top-1/2 -translate-y-1/2 lg:-translate-x-1/2 rounded-full bg-white/95 backdrop-blur-sm shadow-lg hover:bg-white p-3 transition-all hover:scale-110 z-10 border border-slate-200/50" aria-label="Previous slide"><i data-lucide="chevron-left" class="w-6 h-6 text-slate-700"></i></button>
+                <button class="next absolute right-0 top-1/2 -translate-y-1/2 rounded-l-full rounded-r-none bg-white/95 backdrop-blur-sm shadow-lg hover:bg-white p-3 transition-all hover:scale-110 z-10 border border-slate-200/50 border-r-0" aria-label="Next slide"><i data-lucide="chevron-right" class="w-6 h-6 text-slate-700"></i></button>
+                <div class="indicators absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2 z-10"></div>
               </div>
             </div>
           </div>
@@ -129,7 +137,7 @@
 
       <section class="py-16 lg:py-20">
         <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <h2 class="serif text-2xl font-semibold text-slate-900 mb-6">What We Do</h2>
+          <h2 class="serif text-2xl sm:text-3xl font-semibold text-slate-900 mb-6">What We Do</h2>
           <div class="grid md:grid-cols-4 gap-6" data-aos="fade-up" data-aos-duration="700">
             <div class="rounded-xl border border-slate-200 p-6 bg-white card-hover">
               <i data-lucide="file-cog" class="w-7 h-7 text-[var(--brand)]"></i>
@@ -158,7 +166,7 @@
       <section class="py-16 lg:py-20 bg-gradient-to-br from-sky-50 to-emerald-50">
         <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 grid md:grid-cols-3 gap-8 items-center">
           <div class="md:col-span-2" data-aos="fade-up">
-            <h2 class="serif text-3xl lg:text-4xl font-semibold text-slate-900">Trusted by institutions and growing businesses</h2>
+            <h2 class="serif text-2xl sm:text-3xl lg:text-3xl font-semibold text-slate-900">Trusted by institutions and growing businesses</h2>
             <p class="mt-4 text-slate-600 max-w-2xl">We bring Big-4 discipline and development-partner experience to each engagement—balancing compliance, transparency, and impact.</p>
             <div class="mt-6 grid sm:grid-cols-3 gap-4">
               <div class="rounded-lg bg-white p-4 border border-slate-200 text-center">
@@ -187,7 +195,7 @@
         <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div class="grid lg:grid-cols-2 gap-10 items-center">
             <div data-aos="fade-right">
-              <h2 class="serif text-3xl font-semibold text-slate-900">Why choose Dauzi?</h2>
+              <h2 class="serif text-2xl sm:text-3xl font-semibold text-slate-900">Why choose Dauzi?</h2>
               <p class="mt-4 text-slate-600 max-w-xl">We combine rigorous, evidence‑based analysis with practical execution to deliver results that last.</p>
               <ul class="mt-6 space-y-3 text-slate-700">
                 <li class="flex items-start gap-3"><i data-lucide="check-circle" class="w-5 h-5 text-[var(--brand)] mt-0.5"></i><span><strong>Credibility you can trust:</strong> Chartered Accountant leadership with World Bank project experience.</span></li>
@@ -221,7 +229,7 @@
       <!-- Testimonials Section -->
       <section class="py-16 lg:py-20 bg-slate-50">
         <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <h2 class="serif text-3xl font-semibold text-slate-900 text-center">What clients say</h2>
+          <h2 class="serif text-2xl sm:text-3xl font-semibold text-slate-900 text-center">What clients say</h2>
           <div class="mt-10 grid md:grid-cols-3 gap-6">
             <figure class="rounded-xl border border-slate-200 bg-white p-6 card-hover" data-aos="fade-up">
               <blockquote class="text-slate-700">“Their structured approach and documentation stood up during audit and saved us significant exposure.”</blockquote>
@@ -242,7 +250,7 @@
       <!-- Partners Strip -->
       <section class="py-10 bg-white" aria-labelledby="clients-partners-heading">
         <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <h2 id="clients-partners-heading" class="serif text-3xl font-semibold text-slate-900 text-center">Clients & Partners</h2>
+          <h2 id="clients-partners-heading" class="serif text-2xl sm:text-3xl font-semibold text-slate-900 text-center">Clients & Partners</h2>
           <div class="mt-6 grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-6 gap-6 items-center" data-aos="fade-up">
             <img src="assets/img/partners.svg" alt="Partner" class="h-10 w-auto mx-auto grayscale hover:grayscale-0 transition" loading="lazy" />
             <img src="assets/img/partners.svg" alt="Partner" class="h-10 w-auto mx-auto grayscale hover:grayscale-0 transition" loading="lazy" />
@@ -257,24 +265,19 @@
       <!-- Final CTA Band -->
       <section class="py-16 bg-gradient-to-r from-amber-100 via-white to-emerald-100">
         <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
-          <h2 class="serif text-3xl font-semibold text-slate-900">Ready to move from plan to results?</h2>
+          <h2 class="serif text-2xl sm:text-3xl font-semibold text-slate-900">Ready to move from plan to results?</h2>
           <p class="mt-3 text-slate-600">Let’s discuss your goals and tailor a path to measurable impact.</p>
           <a href="contact.html" class="mt-6 inline-flex items-center gap-2 rounded-lg bg-[var(--brand)] px-6 py-3 text-white font-medium shadow-sm hover:bg-[var(--brand-2)] transition" onclick="if(window.gtag){gtag('event','click',{event_category:'CTA',event_label:'Get in Touch - Final CTA'});}"><i data-lucide="mail" class="w-5 h-5"></i> Get in Touch</a>
         </div>
       </section>
     </main>
 
-    <div aria-hidden="true">
-      <svg viewBox="0 0 1440 120" class="block w-full" preserveAspectRatio="none">
-        <path d="M0,96L80,106.7C160,117,320,139,480,138.7C640,139,800,117,960,106.7C1120,96,1280,96,1360,96L1440,96L1440,0L1360,0C1280,0,1120,0,960,0C800,0,640,0,480,0C320,0,160,0,80,0L0,0Z" fill="#0f172a"></path>
-      </svg>
-    </div>
     <footer class="bg-[#0f172a] text-slate-200">
       <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-10">
-        <div class="grid md:grid-cols-4 gap-8">
-          <div>
+        <div class="grid md:grid-cols-5 gap-8">
+          <div class="md:col-span-2">
             <div class="flex items-center gap-2">
-              <img src="assets/img/dauzi-logo.png" alt="Dauzi Consulting" class="h-8 w-auto" loading="lazy" />
+              <img src="assets/img/dauzi-logo.png" alt="Dauzi Consulting" class="h-8 w-auto mix-blend-multiply" loading="lazy" />
               <span class="font-semibold">Dauzi Consulting</span>
             </div>
             <p class="mt-3 text-sm text-slate-300">Excellence, credibility, and professionalism in advisory and training.</p>
@@ -305,7 +308,7 @@
               <li><span>Plot 13, 9th Avenue, Oluyole Estate, Ibadan</span></li>
             </ul>
           </div>
-          <div class="md:pl-6 mt-8 md:mt-0">
+          <div class="md:pl-6">
             <h4 class="font-semibold">Connect</h4>
             <div class="mt-3 flex gap-3">
               <a href="#" aria-label="LinkedIn" class="p-2 rounded-md border border-slate-600 hover:bg-slate-800"><i data-lucide="linkedin" class="w-4 h-4"></i></a>
@@ -315,7 +318,7 @@
           </div>
         </div>
         <div class="mt-8 pt-6 border-t border-slate-700 text-sm text-slate-400 text-center">
-          <p>© 2025 All rights reserved. Made with ❤️ by <a href="https://www.webspace.ng" class="underline hover:text-[var(--brand-2)]" rel="noopener" target="_blank">Webspace</a></p>
+          <p>© 2025 All rights reserved. Made with ❤️ by <a href="https://www.webspace.ng" class="hover:text-[var(--brand-2)]" rel="noopener" target="_blank">Webspace</a></p>
         </div>
       </div>
     </footer>
