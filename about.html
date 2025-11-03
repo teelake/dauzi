@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>About Us | Dauzi Consulting</title>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);} gtag('js', new Date());
+      gtag('config', 'G-XXXXXXXXXX');
+    </script>
+    <meta name="description" content="Learn about Dauzi Consulting, our founder, mission, vision, and values. Extensive experience including World Bank projects." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css" />
+    <script defer src="https://unpkg.com/lucide@latest"></script>
+    <link rel="icon" href="assets/img/favicon.svg" />
+    <style>
+      :root { --brand:#D4AF37; --brand-2:#8C6A00; }
+      html { scroll-behavior: smooth; }
+      html, body { overflow-x: hidden; }
+      body { font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; }
+      .serif { font-family: 'Playfair Display', Georgia, 'Times New Roman', serif; }
+      a.nav-link{position:relative}
+      a.nav-link::after{content:"";position:absolute;left:0;bottom:-6px;height:2px;width:0;background:var(--brand);transition:width .25s ease}
+      a.nav-link:hover::after{width:100%}
+    </style>
+  </head>
+  <body class="text-slate-800 bg-white">
+    <header class="sticky top-0 z-50 bg-white/80 backdrop-blur border-b border-slate-200/60">
+      <nav class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8" aria-label="Primary">
+        <div class="flex items-center justify-between h-20">
+          <a href="index.html" class="flex items-center gap-4" aria-label="Dauzi Consulting home">
+            <img src="assets/img/dauzi-logo.png" alt="Dauzi Consulting Logo" class="h-12 w-auto" loading="lazy" />
+            <span class="font-semibold tracking-tight">Dauzi Consulting</span>
+          </a>
+          <button class="lg:hidden inline-flex items-center justify-center rounded-md p-2 text-slate-700 hover:bg-slate-100 focus:outline-none" id="mobile-menu-button" aria-label="Open menu" aria-expanded="false">
+            <i data-lucide="menu" class="w-6 h-6"></i>
+          </button>
+          <ul class="hidden lg:flex items-center gap-8 text-base font-semibold">
+            <li><a class="nav-link py-2 hover:text-[var(--brand-2)]" href="index.html">Home</a></li>
+            <li><a class="nav-link py-2 hover:text-[var(--brand-2)] active" href="about.html">About</a></li>
+            <li><a class="nav-link py-2 hover:text-[var(--brand-2)]" href="services.html">Services</a></li>
+            <li><a class="nav-link py-2 hover:text-[var(--brand-2)]" href="projects.html">Projects</a></li>
+            <li><a class="nav-link py-2 hover:text-[var(--brand-2)]" href="training.html">Training</a></li>
+            <li><a class="nav-link py-2 hover:text-[var(--brand-2)]" href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div id="mobile-menu" class="lg:hidden hidden pb-4">
+          <ul class="flex flex-col gap-2 text-sm font-medium">
+            <li><a class="nav-link block px-2 py-2 rounded hover:bg-slate-100" href="index.html">Home</a></li>
+            <li><a class="nav-link block px-2 py-2 rounded hover:bg-slate-100 active" href="about.html">About</a></li>
+            <li><a class="nav-link block px-2 py-2 rounded hover:bg-slate-100" href="services.html">Services</a></li>
+            <li><a class="nav-link block px-2 py-2 rounded hover:bg-slate-100" href="projects.html">Projects</a></li>
+            <li><a class="nav-link block px-2 py-2 rounded hover:bg-slate-100" href="training.html">Training</a></li>
+            <li><a class="nav-link block px-2 py-2 rounded hover:bg-slate-100" href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <section class="relative overflow-hidden border-b border-slate-200">
+        <div class="absolute inset-0 -z-10 bg-gradient-to-b from-amber-50 to-white"></div>
+        <div class="absolute -top-16 -right-16 h-64 w-64 rounded-full bg-[var(--brand)]/10 blur-3xl"></div>
+        <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16">
+          <h1 class="serif text-4xl font-bold text-slate-900" data-aos="fade-up">About Us</h1>
+          <div class="mt-3 h-1 w-16 bg-[var(--brand)] rounded" data-aos="fade-up" data-aos-delay="50"></div>
+          <p class="mt-4 text-slate-600 max-w-3xl" data-aos="fade-up" data-aos-delay="100">Dauzi Consulting is a professional services firm focused on delivering high-impact Tax, Financial, and Management advisory to public and private sector clients. We are committed to excellence, credibility, and professionalism.</p>
+        </div>
+      </section>
+
+      <section class="py-16 bg-gradient-to-b from-white to-amber-50/30">
+        <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 grid md:grid-cols-3 gap-8 items-start">
+          <div class="md:col-span-1" data-aos="fade-right">
+            <img src="https://images.unsplash.com/photo-1554151228-14d9def656e4?q=80&w=1200&auto=format&fit=crop" alt="Founder portrait" class="w-full h-auto rounded-xl border border-slate-200 object-cover" loading="lazy" />
+          </div>
+          <div class="md:col-span-2 space-y-6">
+            <div data-aos="fade-up">
+              <h2 class="text-xl font-semibold">Founder</h2>
+              <p class="mt-2 text-slate-600">A seasoned Chartered Accountant who has delivered on World Bank assignments and advised leading public and private institutions across Africa. We bring a calm, methodical approach, clear stakeholder communication, and disciplined delivery.</p>
+            </div>
+            <div class="grid sm:grid-cols-3 gap-6" data-aos="fade-up" data-aos-delay="50">
+              <div class="rounded-lg border border-slate-200 p-5 bg-white">
+                <h3 class="font-semibold">Vision</h3>
+                <p class="mt-2 text-sm text-slate-600">To be Africa’s most trusted partner for evidence‑based advisory and capability building.</p>
+              </div>
+              <div class="rounded-lg border border-slate-200 p-5 bg-white">
+                <h3 class="font-semibold">Mission</h3>
+                <p class="mt-2 text-sm text-slate-600">Deliver practical solutions that accelerate growth, strengthen governance, and build teams that sustain results.</p>
+              </div>
+              <div class="rounded-lg border border-slate-200 p-5 bg-white">
+                <h3 class="font-semibold">Core Values</h3>
+                <p class="mt-2 text-sm text-slate-600">Integrity • Excellence • Professionalism • Stewardship</p>
+              </div>
+            </div>
+            <div data-aos="fade-up">
+              <h2 class="text-xl font-semibold">Experience</h2>
+              <ul class="mt-3 space-y-2 text-slate-700 list-disc pl-5">
+                <li>World Bank–funded public financial management and expenditure reforms</li>
+                <li>Tax compliance, planning, and dispute resolution for multinationals</li>
+                <li>Operating model redesign and governance improvement for SMEs</li>
+                <li>Design and delivery of capability programs for finance and leadership teams</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <section class="py-16 bg-slate-50">
+      <div class="w-full px-4 sm:px-6 lg:px-8">
+        <h2 class="serif text-3xl font-semibold text-slate-900" data-aos="fade-up">Frequently Asked Questions</h2>
+        <div class="mt-8 grid md:grid-cols-2 gap-6" data-aos="fade-up" data-aos-delay="50">
+          <details class="rounded-xl border border-slate-200 bg-white p-5">
+            <summary class="font-medium cursor-pointer">Do you work with both public and private sector clients?</summary>
+            <p class="mt-3 text-sm text-slate-700">Yes. Our experience spans ministries and agencies, development partners, and private companies from SMEs to multinationals.</p>
+          </details>
+          <details class="rounded-xl border border-slate-200 bg-white p-5">
+            <summary class="font-medium cursor-pointer">Where are you based and do you work remotely?</summary>
+            <p class="mt-3 text-sm text-slate-700">We are based in Ibadan (behind Ace Mall, Oluyole Estate) and support clients across Nigeria and beyond, on‑site or remotely.</p>
+          </details>
+          <details class="rounded-xl border border-slate-200 bg-white p-5">
+            <summary class="font-medium cursor-pointer">How do you price engagements?</summary>
+            <p class="mt-3 text-sm text-slate-700">Pricing depends on scope and timeline. We agree clear deliverables and a plan up‑front—fixed fee or time & materials as appropriate.</p>
+          </details>
+          <details class="rounded-xl border border-slate-200 bg-white p-5">
+            <summary class="font-medium cursor-pointer">Can you customize training for our team?</summary>
+            <p class="mt-3 text-sm text-slate-700">Absolutely. We tailor content to your industry, roles, and objectives, with pre‑work and post‑session support.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <div aria-hidden="true">
+      <svg viewBox="0 0 1440 120" class="block w-full" preserveAspectRatio="none">
+        <path d="M0,96L80,106.7C160,117,320,139,480,138.7C640,139,800,117,960,106.7C1120,96,1280,96,1360,96L1440,96L1440,0L1360,0C1280,0,1120,0,960,0C800,0,640,0,480,0C320,0,160,0,80,0L0,0Z" fill="#0f172a"></path>
+      </svg>
+    </div>
+    <footer class="bg-[#0f172a] text-slate-200">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-10">
+        <div class="grid md:grid-cols-4 gap-8">
+          <div>
+            <div class="flex items-center gap-2">
+              <img src="assets/img/dauzi-logo.png" alt="Dauzi Consulting" class="h-8 w-auto" loading="lazy" />
+              <span class="font-semibold">Dauzi Consulting</span>
+            </div>
+            <p class="mt-3 text-sm text-slate-300">Excellence, credibility, and professionalism in advisory and training.</p>
+          </div>
+          <div>
+            <h4 class="font-semibold">Company</h4>
+            <ul class="mt-3 space-y-2 text-sm">
+              <li><a class="hover:text-[var(--brand-2)]" href="about.html">About</a></li>
+              <li><a class="hover:text-[var(--brand-2)]" href="services.html">Services</a></li>
+              <li><a class="hover:text-[var(--brand-2)]" href="projects.html">Projects</a></li>
+              <li><a class="hover:text-[var(--brand-2)]" href="training.html">Training</a></li>
+              <li><a class="hover:text-[var(--brand-2)]" href="contact.html">Contact</a></li>
+            </ul>
+          </div>
+          <div>
+            <h4 class="font-semibold">Legal</h4>
+            <ul class="mt-3 space-y-2 text-sm">
+              <li><a href="/privacy.html" class="hover:text-[var(--brand-2)]">Privacy</a></li>
+              <li><a href="/terms.html" class="hover:text-[var(--brand-2)]">Terms</a></li>
+            </ul>
+          </div>
+          <div>
+            <h4 class="font-semibold">Contact</h4>
+            <ul class="mt-3 space-y-2 text-sm">
+              <li><a href="mailto:info@dauziconsulting.com" class="hover:text-[var(--brand-2)]">info@dauziconsulting.com</a></li>
+              <li><a href="tel:+2348033660991" class="hover:text-[var(--brand-2)]">0803 366 0991</a></li>
+              <li><a href="tel:+2349166786012" class="hover:text-[var(--brand-2)]">0916 678 6012</a></li>
+              <li><span>Plot 13, 9th Avenue, Oluyole Estate, Ibadan</span></li>
+            </ul>
+          </div>
+          <div class="md:pl-6 mt-8 md:mt-0">
+            <h4 class="font-semibold">Connect</h4>
+            <div class="mt-3 flex gap-3">
+              <a href="#" aria-label="LinkedIn" class="p-2 rounded-md border border-slate-200 hover:bg-slate-50"><i data-lucide="linkedin" class="w-4 h-4"></i></a>
+              <a href="#" aria-label="Twitter" class="p-2 rounded-md border border-slate-200 hover:bg-slate-50"><i data-lucide="twitter" class="w-4 h-4"></i></a>
+              <a href="https://wa.me/2348033660991" aria-label="WhatsApp" class="p-2 rounded-md border border-slate-200 hover:bg-slate-50"><i data-lucide="message-circle" class="w-4 h-4"></i></a>
+            </div>
+          </div>
+        </div>
+        <div class="mt-8 pt-6 border-t border-slate-700 text-sm text-slate-400 text-center">
+          <p>© 2025 All rights reserved. Made with ❤️ by <a href="https://www.webspace.ng" class="underline hover:text-[var(--brand-2)]" rel="noopener" target="_blank">Webspace</a></p>
+          <div class="mt-2 flex gap-4 justify-center">
+            <a href="/privacy.html" class="hover:text-[var(--brand-2)]">Privacy</a>
+            <a href="/terms.html" class="hover:text-[var(--brand-2)]">Terms</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script defer src="js/main.js"></script>
+    <script defer src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  </body>
+  </html>
+
+

@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="800" height="500" role="img" aria-label="Hero placeholder">
+  <defs>
+    <linearGradient id="g" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0%" stop-color="#1e6bb8" stop-opacity="0.15"/>
+      <stop offset="100%" stop-color="#0a3d62" stop-opacity="0.25"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="500" fill="url(#g)"/>
+  <g fill="#0a3d62">
+    <circle cx="120" cy="120" r="60" fill="#1e6bb8" opacity="0.15"/>
+    <rect x="260" y="180" width="280" height="160" rx="16" fill="#ffffff" stroke="#d0d8e5"/>
+    <text x="280" y="260" font-family="Inter, Arial" font-size="20" fill="#0a3d62">Professional Consulting</text>
+  </g>
+</svg>
+
