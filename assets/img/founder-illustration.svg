@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 700" width="600" height="700" role="img" aria-label="Professional founder illustration">
+  <defs>
+    <linearGradient id="founderGrad1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#D4AF37" stop-opacity="0.1"/>
+      <stop offset="100%" stop-color="#8C6A00" stop-opacity="0.15"/>
+    </linearGradient>
+    <linearGradient id="founderGrad2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f172a" stop-opacity="0.05"/>
+      <stop offset="100%" stop-color="#0f172a" stop-opacity="0.1"/>
+    </linearGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="600" height="700" fill="url(#founderGrad1)" rx="20"/>
+  
+  <!-- Abstract professional portrait representation -->
+  <g transform="translate(300, 350)">
+    <!-- Professional silhouette/avatar circle -->
+    <circle cx="0" cy="-50" r="120" fill="url(#founderGrad2)" stroke="#D4AF37" stroke-width="3" opacity="0.9"/>
+    <circle cx="0" cy="-50" r="100" fill="#ffffff" opacity="0.8"/>
+    
+    <!-- Abstract professional icon representation -->
+    <!-- Suit/Tie icon -->
+    <g transform="translate(0, -50)">
+      <!-- Head/shoulders silhouette -->
+      <ellipse cx="0" cy="-40" rx="35" ry="40" fill="#0f172a" opacity="0.3"/>
+      <rect x="-50" y="0" width="100" height="120" rx="25" fill="#0f172a" opacity="0.4"/>
+      <rect x="-40" y="10" width="80" height="100" rx="20" fill="#ffffff" opacity="0.9"/>
+      
+      <!-- Tie -->
+      <path d="M -10,10 L 10,10 L 8,80 L -8,80 Z" fill="#D4AF37" opacity="0.7"/>
+      <path d="M -6,10 L 6,10 L 5,50 L -5,50 Z" fill="#8C6A00" opacity="0.8"/>
+      
+      <!-- Collar -->
+      <path d="M -30,10 L -20,20 L -10,10 Z" fill="#0f172a" opacity="0.3"/>
+      <path d="M 30,10 L 20,20 L 10,10 Z" fill="#0f172a" opacity="0.3"/>
+    </g>
+    
+    <!-- Professional elements around -->
+    <!-- Briefcase -->
+    <g transform="translate(-120, 100)">
+      <rect x="0" y="0" width="60" height="40" rx="6" fill="#ffffff" stroke="#D4AF37" stroke-width="2" opacity="0.9"/>
+      <rect x="8" y="8" width="44" height="24" rx="4" fill="#8C6A00" opacity="0.3"/>
+      <rect x="15" y="0" width="30" height="8" rx="4" fill="#D4AF37" opacity="0.6"/>
+      <circle cx="45" cy="20" r="4" fill="#D4AF37" opacity="0.5"/>
+    </g>
+    
+    <!-- Document/Chart -->
+    <g transform="translate(120, 100)">
+      <rect x="0" y="0" width="50" height="65" rx="6" fill="#ffffff" stroke="#8C6A00" stroke-width="2" opacity="0.9"/>
+      <rect x="8" y="12" width="34" height="5" rx="2" fill="#D4AF37" opacity="0.5"/>
+      <rect x="8" y="22" width="28" height="4" rx="2" fill="#e2e8f0"/>
+      <rect x="8" y="30" width="30" height="4" rx="2" fill="#e2e8f0"/>
+      <rect x="8" y="38" width="25" height="4" rx="2" fill="#e2e8f0"/>
+      <rect x="12" y="48" width="20" height="12" rx="2" fill="#D4AF37" opacity="0.3"/>
+    </g>
+  </g>
+  
+  <!-- Decorative elements -->
+  <circle cx="100" cy="100" r="40" fill="#D4AF37" opacity="0.1"/>
+  <circle cx="500" cy="600" r="50" fill="#8C6A00" opacity="0.1"/>
+  <rect x="450" y="50" width="80" height="80" rx="16" fill="#ffffff" opacity="0.4" transform="rotate(-15 490 90)"/>
+</svg>
+
