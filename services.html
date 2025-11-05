@@ -35,40 +35,57 @@
 
     <main>
       <section class="relative overflow-hidden border-b border-slate-200">
-        <div class="absolute inset-0 -z-10 bg-gradient-to-b from-amber-50 to-white"></div>
-        <div class="absolute -top-16 -right-16 h-64 w-64 rounded-full bg-[var(--brand)]/10 blur-3xl"></div>
+        <!-- Background image -->
+        <div class="absolute inset-0 -z-10">
+          <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=1920&h=960&fit=crop&q=80" alt="" aria-hidden="true" class="h-full w-full object-cover" loading="eager" />
+          <!-- Color overlay -->
+          <div class="absolute inset-0 bg-gradient-to-b from-sky-700/65 via-sky-900/55 to-slate-900/55 mix-blend-multiply"></div>
+          <!-- Optional subtle pattern/shape -->
+          <div class="pointer-events-none absolute -top-20 -right-20 h-72 w-72 rounded-full bg-[var(--brand)]/25 blur-3xl"></div>
+        </div>
         <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16">
-          <h1 class="serif text-4xl font-bold text-slate-900" data-aos="fade-up">Our Services</h1>
-          <div class="mt-3 h-1 w-16 bg-[var(--brand)] rounded" data-aos="fade-up" data-aos-delay="50"></div>
-          <p class="mt-4 text-slate-600 max-w-3xl" data-aos="fade-up" data-aos-delay="100">We deliver end-to-end advisory across tax, finance, management, and training—tailored to your context and objectives.</p>
+          <h1 class="serif text-4xl font-bold text-white" data-aos="fade-up">Our Services</h1>
+          <div class="mt-3 h-1 w-16 bg-white/80 rounded" data-aos="fade-up" data-aos-delay="50"></div>
+          <p class="mt-4 text-white/90 max-w-3xl" data-aos="fade-up" data-aos-delay="100">We deliver end-to-end advisory across tax, finance, management, and training—tailored to your context and objectives.</p>
         </div>
       </section>
 
       <section class="py-16">
-        <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           <article class="rounded-xl border border-slate-200 p-6 bg-white" data-aos="fade-up">
             <i data-lucide="building-2" class="w-8 h-8 text-[var(--brand)]"></i>
-            <h2 class="mt-4 font-semibold text-lg">Public Financial Management Reforms</h2>
-            <p class="mt-2 text-sm text-slate-600">Budget reforms, tax administration reforms, audit institution reforms, and institutional development with capacity building.</p>
-            <a href="#pfm" class="mt-3 inline-flex items-center gap-1 text-[var(--brand-2)]">Learn more <i data-lucide="arrow-right" class="w-4 h-4"></i></a>
+            <h2 class="mt-4 font-semibold text-lg">Public Financial Management</h2>
+            <p class="mt-2 text-sm text-slate-600">Strengthening public finance systems, controls, transparency and value for money.</p>
           </article>
           <article class="rounded-xl border border-slate-200 p-6 bg-white" data-aos="fade-up" data-aos-delay="50">
-            <i data-lucide="line-chart" class="w-8 h-8 text-[var(--brand)]"></i>
-            <h2 class="mt-4 font-semibold text-lg">Financial Advisory</h2>
-            <p class="mt-2 text-sm text-slate-600">Valuation, due diligence, performance improvements, and investment readiness.</p>
-            <a href="#financial" class="mt-3 inline-flex items-center gap-1 text-[var(--brand-2)]">Learn more <i data-lucide="arrow-right" class="w-4 h-4"></i></a>
+            <i data-lucide="file-text" class="w-8 h-8 text-[var(--brand)]"></i>
+            <h2 class="mt-4 font-semibold text-lg">Taxation &amp; Tax Administration Reform</h2>
+            <p class="mt-2 text-sm text-slate-600">Policy, processes and compliance improvements to grow sustainable revenues.</p>
           </article>
           <article class="rounded-xl border border-slate-200 p-6 bg-white" data-aos="fade-up" data-aos-delay="100">
-            <i data-lucide="settings" class="w-8 h-8 text-[var(--brand)]"></i>
-            <h2 class="mt-4 font-semibold text-lg">Management Consulting</h2>
-            <p class="mt-2 text-sm text-slate-600">Strategy, operating models, risk and governance, process redesign, and PMO.</p>
-            <a href="#management" class="mt-3 inline-flex items-center gap-1 text-[var(--brand-2)]">Learn more <i data-lucide="arrow-right" class="w-4 h-4"></i></a>
+            <i data-lucide="clipboard-check" class="w-8 h-8 text-[var(--brand)]"></i>
+            <h2 class="mt-4 font-semibold text-lg">Project Monitoring and Review</h2>
+            <p class="mt-2 text-sm text-slate-600">Independent reviews, performance tracking and benefits realization.</p>
           </article>
           <article class="rounded-xl border border-slate-200 p-6 bg-white" data-aos="fade-up" data-aos-delay="150">
-            <i data-lucide="graduation-cap" class="w-8 h-8 text-[var(--brand)]"></i>
-            <h2 class="mt-4 font-semibold text-lg">Management Training</h2>
-            <p class="mt-2 text-sm text-slate-600">Leadership, finance for non-finance, governance, and customized capability building.</p>
-            <a href="#training" class="mt-3 inline-flex items-center gap-1 text-[var(--brand-2)]">Learn more <i data-lucide="arrow-right" class="w-4 h-4"></i></a>
+            <i data-lucide="users" class="w-8 h-8 text-[var(--brand)]"></i>
+            <h2 class="mt-4 font-semibold text-lg">Management Consulting and Advisory</h2>
+            <p class="mt-2 text-sm text-slate-600">Strategy, operating models, governance, risk and delivery support.</p>
+          </article>
+          <article class="rounded-xl border border-slate-200 p-6 bg-white" data-aos="fade-up" data-aos-delay="200">
+            <i data-lucide="laptop" class="w-8 h-8 text-[var(--brand)]"></i>
+            <h2 class="mt-4 font-semibold text-lg">Software Project Management</h2>
+            <p class="mt-2 text-sm text-slate-600">Requirements to rollout: planning, vendor management and assurance.</p>
+          </article>
+          <article class="rounded-xl border border-slate-200 p-6 bg-white" data-aos="fade-up" data-aos-delay="250">
+            <i data-lucide="layers" class="w-8 h-8 text-[var(--brand)]"></i>
+            <h2 class="mt-4 font-semibold text-lg">Capacity Building and Skill Development</h2>
+            <p class="mt-2 text-sm text-slate-600">Targeted programs to upskill teams and embed new ways of working.</p>
+          </article>
+          <article class="rounded-xl border border-slate-200 p-6 bg-white" data-aos="fade-up" data-aos-delay="300">
+            <i data-lucide="presentation" class="w-8 h-8 text-[var(--brand)]"></i>
+            <h2 class="mt-4 font-semibold text-lg">Training and Facilitation</h2>
+            <p class="mt-2 text-sm text-slate-600">Design and facilitation of workshops for measurable capability gains.</p>
           </article>
         </div>
       </section>
