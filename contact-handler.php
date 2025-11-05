@@ -55,10 +55,7 @@ $email_body = "New contact form submission from Dauzi Consulting website\n\n";
 $email_body .= "Name: $name\n";
 $email_body .= "Email: $email\n";
 $email_body .= "Phone: " . ($phone ? $phone : 'Not provided') . "\n\n";
-$email_body .= "Message:\n$message\n\n";
-$email_body .= "---\n";
-$email_body .= "Submitted: " . date('Y-m-d H:i:s') . "\n";
-$email_body .= "IP Address: " . $_SERVER['REMOTE_ADDR'] . "\n";
+$email_body .= "Message:\n$message\n";
 
 // Email headers with SMTP authentication
 $headers = "From: $from_name <$from_email>\r\n";
