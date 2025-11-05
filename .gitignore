@@ -2,11 +2,13 @@
 config.php
 
 # Composer
-/vendor/
-composer.lock
+# Note: vendor/ is included for deployment (PHPMailer needed on cPanel)
+# composer.lock
+# /vendor/
 
-# Keep composer.json for reference
+# Keep composer files for reference
 !composer.json
+!vendor/
 
 # OS files
 .DS_Store
