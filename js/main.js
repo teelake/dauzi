@@ -76,6 +76,12 @@ function loadIncludes() {
   }
   
   var basePath = getBasePath();
+
+  // Version string to bust caches after deployments (update when you deploy)
+  var cacheBuster = 'v=20251105';
+  function withVersion(url) {
+    return url + (url.indexOf('?') === -1 ? '?' : '&') + cacheBuster;
+  }
   
   // Try multiple path strategies
   var headerPaths = [
@@ -83,14 +89,14 @@ function loadIncludes() {
     '/includes/header.html',
     'includes/header.html',
     './includes/header.html'
-  ];
+  ].map(withVersion);
   
   var footerPaths = [
     basePath + 'includes/footer.html',
     '/includes/footer.html',
     'includes/footer.html',
     './includes/footer.html'
-  ];
+  ].map(withVersion);
   
   // Remove duplicates
   headerPaths = headerPaths.filter(function(value, index, self) {
