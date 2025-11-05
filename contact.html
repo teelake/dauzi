@@ -52,7 +52,8 @@
 
       <section class="py-16">
         <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 grid md:grid-cols-2 gap-10 items-start">
-          <form class="space-y-4" data-aos="fade-right" action="#" method="post" aria-label="Contact form" id="contact-form">
+          <form class="space-y-4" data-aos="fade-right" action="contact-handler-smtp.php" method="post" aria-label="Contact form" id="contact-form">
+            <div id="form-message" class="hidden"></div>
             <div>
               <label for="name" class="block text-sm font-medium">Name</label>
               <input id="name" name="name" type="text" required class="mt-1 w-full rounded-lg border border-slate-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[var(--brand-2)]" placeholder="Your name" />
@@ -66,8 +67,8 @@
               <input id="phone" name="phone" type="tel" class="mt-1 w-full rounded-lg border border-slate-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[var(--brand-2)]" placeholder="0803 000 0000" />
             </div>
             <div>
-              <label for="subject" class="block text-sm font-medium">Subject</label>
-              <input id="subject" name="subject" type="text" class="mt-1 w-full rounded-lg border border-slate-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[var(--brand-2)]" placeholder="What is your inquiry about?" />
+              <label for="subject" class="block text-sm font-medium">Subject <span class="text-red-500">*</span></label>
+              <input id="subject" name="subject" type="text" required class="mt-1 w-full rounded-lg border border-slate-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[var(--brand-2)]" placeholder="What is your inquiry about?" />
             </div>
             <div>
               <label for="message" class="block text-sm font-medium">Message</label>
@@ -78,7 +79,7 @@
           </form>
           <div class="space-y-5" data-aos="fade-left">
           <div class="rounded-xl border border-slate-200 overflow-hidden bg-white">
-            <iframe title="Dauzi Consulting Location" class="aspect-[16/10] w-full" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps?q=Plot%2013%2C%209th%20Avenue%2C%20Oluyole%20Estate%2C%20Ibadan%20Ace%20Mall&output=embed"></iframe>
+            <iframe src="https://www.google.com/maps/embed?pb=!1m23!1m12!1m3!1d11927.459993844774!2d3.8489042645929463!3d7.355495680557558!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m8!3e6!4m0!4m5!1s0x10398d43fca58fc3%3A0x2fa0c576aed0878b!2sEstate%2C%209th%20Ave%2C%20Oluyole%2C%20Ibadan%20200261%2C%20Oyo!3m2!1d7.363260599999999!2d3.8577914!5e1!3m2!1sen!2sng!4v1762347605331!5m2!1sen!2sng" width="100%" height="400" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Dauzi Consulting Location"></iframe>
           </div>
             <div class="rounded-xl border border-slate-200 p-6 bg-white">
               <h2 class="font-semibold">Contact Information</h2>
@@ -86,7 +87,7 @@
                 <li class="flex items-center gap-2"><i data-lucide="mail" class="w-4 h-4 text-[var(--brand)]"></i> <a href="mailto:info@dauziconsulting.com" class="hover:text-[var(--brand-2)]">info@dauziconsulting.com</a></li>
                 <li class="flex items-center gap-2"><i data-lucide="phone" class="w-4 h-4 text-[var(--brand)]"></i> <a href="tel:+2348033660991" class="hover:text-[var(--brand-2)]">0803 366 0991</a></li>
                 <li class="flex items-center gap-2"><i data-lucide="phone" class="w-4 h-4 text-[var(--brand)]"></i> <a href="tel:+2349166786012" class="hover:text-[var(--brand-2)]">0916 678 6012</a></li>
-                <li class="flex items-center gap-2"><i data-lucide="map-pin" class="w-4 h-4 text-[var(--brand)]"></i> Plot 13, 9th Avenue, Oluyole Estate, Ibadan</li>
+                <li class="flex items-center gap-2"><i data-lucide="map-pin" class="w-4 h-4 text-[var(--brand)]"></i> Plot 13, 9th Avenue, Oluyole Estate, Ibadan, Oyo State, Nigeria</li>
               </ul>
             </div>
 
@@ -99,6 +100,25 @@
 
     <script defer src="js/main.js"></script>
     <script defer src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+      // Show success/error messages from URL parameters
+      document.addEventListener('DOMContentLoaded', function() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const messageDiv = document.getElementById('form-message');
+        
+        if (urlParams.get('success') === '1') {
+          messageDiv.className = 'rounded-lg bg-emerald-50 border border-emerald-200 p-4 text-sm text-emerald-700';
+          messageDiv.innerHTML = '<strong>Success!</strong> Your message has been sent. We\'ll get back to you soon.';
+          messageDiv.classList.remove('hidden');
+          messageDiv.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        } else if (urlParams.get('error')) {
+          messageDiv.className = 'rounded-lg bg-red-50 border border-red-200 p-4 text-sm text-red-700';
+          messageDiv.innerHTML = '<strong>Error:</strong> ' + decodeURIComponent(urlParams.get('error'));
+          messageDiv.classList.remove('hidden');
+          messageDiv.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+      });
+    </script>
   </body>
   </html>
 
