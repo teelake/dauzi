@@ -1,6 +1,10 @@
 <?php
 // Contact Form Handler with SMTP Authentication (PHPMailer version)
 // Uses secure config.php for credentials
+// Implements POST-redirect-GET pattern to prevent duplicate submissions
+
+// Start session for duplicate submission prevention
+session_start();
 
 // Security: Prevent direct access
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
@@ -30,6 +34,20 @@ if (!$phpmailer_available) {
 // Use PHPMailer classes
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
+
+// Check for duplicate submission (same content within 30 seconds)
+$submission_hash = isset($_POST['name']) && isset($_POST['email']) && isset($_POST['message']) 
+    ? md5($_POST['name'] . $_POST['email'] . $_POST['message']) 
+    : '';
+
+if (isset($_SESSION['last_submission_hash']) && 
+    $_SESSION['last_submission_hash'] === $submission_hash && 
+    isset($_SESSION['last_submission_time']) && 
+    (time() - $_SESSION['last_submission_time']) < 30) {
+    // Duplicate submission detected - redirect without processing
+    header('Location: contact.html?success=1&duplicate=1');
+    exit;
+}
 
 // Sanitize and validate input
 $name = isset($_POST['name']) ? trim(htmlspecialchars($_POST['name'])) : '';
@@ -129,16 +147,29 @@ if (defined('ENABLE_DATABASE') && ENABLE_DATABASE) {
     }
 }
 
-// Redirect based on result
-if ($mail_sent) {
-    $success_msg = 'Your message has been sent successfully.';
-    if ($db_saved) {
-        $success_msg .= ' (Saved to database)';
-    }
-    header('Location: contact.html?success=1');
-} else {
-    header('Location: contact.html?error=' . urlencode('Failed to send message. Please try again or contact us directly.'));
+// Store submission hash and time to prevent duplicates
+if ($mail_sent && $submission_hash) {
+    $_SESSION['last_submission_hash'] = $submission_hash;
+    $_SESSION['last_submission_time'] = time();
 }
-exit;
+
+// Generate unique submission token to prevent duplicates
+$submission_token = bin2hex(random_bytes(16));
+
+// Store submission success in session (prevents duplicate on refresh)
+if ($mail_sent) {
+    $_SESSION['form_submitted'] = true;
+    $_SESSION['submission_token'] = $submission_token;
+    $_SESSION['submission_time'] = time();
+    
+    // Redirect with token (POST-redirect-GET pattern)
+    header('Location: contact.html?success=1&token=' . $submission_token);
+    exit;
+} else {
+    // Store error in session and redirect
+    $_SESSION['form_error'] = 'Failed to send message. Please try again or contact us directly.';
+    header('Location: contact.html?error=1');
+    exit;
+}
 ?>
 

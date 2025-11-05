@@ -101,21 +101,66 @@
     <script defer src="js/main.js"></script>
     <script defer src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-      // Show success/error messages from URL parameters
+      // Show success/error messages and prevent duplicate submissions
       document.addEventListener('DOMContentLoaded', function() {
         const urlParams = new URLSearchParams(window.location.search);
         const messageDiv = document.getElementById('form-message');
+        const form = document.getElementById('contact-form');
         
+        // Clear URL parameters after reading (prevents resubmission on refresh)
+        if (urlParams.get('success') === '1' || urlParams.get('error')) {
+          // Replace URL without reload
+          window.history.replaceState({}, document.title, window.location.pathname);
+        }
+        
+        // Show success message
         if (urlParams.get('success') === '1') {
           messageDiv.className = 'rounded-lg bg-emerald-50 border border-emerald-200 p-4 text-sm text-emerald-700';
-          messageDiv.innerHTML = '<strong>Success!</strong> Your message has been sent. We\'ll get back to you soon.';
+          messageDiv.innerHTML = '<strong>✓ Success!</strong> Your message has been sent. We\'ll get back to you soon.';
           messageDiv.classList.remove('hidden');
+          
+          // Clear form to prevent accidental resubmission
+          if (form) {
+            form.reset();
+            // Disable form temporarily
+            const submitBtn = form.querySelector('button[type="submit"]');
+            if (submitBtn) {
+              submitBtn.disabled = true;
+              submitBtn.textContent = 'Message Sent ✓';
+              setTimeout(function() {
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = '<i data-lucide="send" class="w-5 h-5"></i> Send Message';
+                if (window.lucide) window.lucide.createIcons();
+              }, 5000);
+            }
+          }
+          
           messageDiv.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-        } else if (urlParams.get('error')) {
+        } 
+        // Show error message
+        else if (urlParams.get('error')) {
           messageDiv.className = 'rounded-lg bg-red-50 border border-red-200 p-4 text-sm text-red-700';
-          messageDiv.innerHTML = '<strong>Error:</strong> ' + decodeURIComponent(urlParams.get('error'));
+          messageDiv.innerHTML = '<strong>Error:</strong> ' + (urlParams.get('error') === '1' ? 'Failed to send message. Please try again or contact us directly.' : decodeURIComponent(urlParams.get('error')));
           messageDiv.classList.remove('hidden');
           messageDiv.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+        
+        // Prevent double submission
+        if (form) {
+          let isSubmitting = false;
+          form.addEventListener('submit', function(e) {
+            if (isSubmitting) {
+              e.preventDefault();
+              return false;
+            }
+            isSubmitting = true;
+            const submitBtn = form.querySelector('button[type="submit"]');
+            if (submitBtn) {
+              submitBtn.disabled = true;
+              submitBtn.innerHTML = '<i data-lucide="loader-2" class="w-5 h-5 animate-spin"></i> Sending...';
+              if (window.lucide) window.lucide.createIcons();
+            }
+          });
         }
       });
     </script>
