@@ -19,26 +19,67 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
 // Load secure configuration (must be before any output)
 require_once 'config.php';
 
-// Check if PHPMailer is available
+// Check if PHPMailer is available and load it
 $phpmailer_available = false;
 $phpmailer_error = '';
 
 // Try to load PHPMailer
 if (file_exists('vendor/autoload.php')) {
     try {
-        require 'vendor/autoload.php';
-        if (class_exists('PHPMailer\PHPMailer\PHPMailer')) {
+        require_once 'vendor/autoload.php';
+        
+        // Try to manually require PHPMailer files if autoload doesn't work
+        // Check both possible paths (Composer creates vendor/phpmailer/phpmailer/)
+        $phpmailer_paths = [
+            'vendor/phpmailer/phpmailer/src/',  // Standard Composer structure
+            'vendor/phpmailer/phpmailer/phpmailer/src/',  // Alternative structure
+            'vendor/phpmailer/src/'  // Direct structure
+        ];
+        
+        $phpmailer_path = null;
+        foreach ($phpmailer_paths as $path) {
+            if (file_exists($path . 'PHPMailer.php')) {
+                $phpmailer_path = $path;
+                break;
+            }
+        }
+        
+        if ($phpmailer_path) {
+            require_once $phpmailer_path . 'PHPMailer.php';
+            require_once $phpmailer_path . 'SMTP.php';
+            require_once $phpmailer_path . 'Exception.php';
+        }
+        
+        // Check if class exists (try both with and without namespace)
+        if (class_exists('PHPMailer\PHPMailer\PHPMailer') || class_exists('PHPMailer')) {
             $phpmailer_available = true;
         } else {
-            $phpmailer_error = 'PHPMailer class not found after autoload';
+            // Try to instantiate to trigger autoload
+            try {
+                $test = new \PHPMailer\PHPMailer\PHPMailer(true);
+                $phpmailer_available = true;
+            } catch (Exception $e) {
+                $phpmailer_error = 'PHPMailer class not found after autoload. Path: ' . realpath('vendor/autoload.php');
+                error_log("PHPMailer Load Error: " . $phpmailer_error);
+                
+                // Check all possible paths
+                $paths_to_check = [
+                    'vendor/phpmailer/phpmailer/src/PHPMailer.php',
+                    'vendor/phpmailer/phpmailer/phpmailer/src/PHPMailer.php',
+                    'vendor/phpmailer/src/PHPMailer.php'
+                ];
+                foreach ($paths_to_check as $path) {
+                    error_log("Checking path: $path - " . (file_exists($path) ? 'EXISTS' : 'NOT FOUND'));
+                }
+            }
         }
     } catch (Exception $e) {
         $phpmailer_error = 'Error loading PHPMailer: ' . $e->getMessage();
         error_log("PHPMailer Load Error: " . $phpmailer_error);
     }
 } else {
-    $phpmailer_error = 'vendor/autoload.php not found';
-    error_log("PHPMailer not found: vendor/autoload.php missing");
+    $phpmailer_error = 'vendor/autoload.php not found at: ' . realpath('.') . '/vendor/autoload.php';
+    error_log("PHPMailer not found: " . $phpmailer_error);
 }
 
 // If PHPMailer not available, redirect with error
@@ -112,12 +153,11 @@ if (!empty($errors)) {
     exit;
 }
 
-// Email body
+// Email body (subject is not included - it's used as email subject)
 $email_body = "New contact form submission from Dauzi Consulting website\n\n";
 $email_body .= "Name: $name\n";
 $email_body .= "Email: $email\n";
-$email_body .= "Phone: " . ($phone ? $phone : 'Not provided') . "\n";
-$email_body .= "Subject: $subject\n\n";
+$email_body .= "Phone: " . ($phone ? $phone : 'Not provided') . "\n\n";
 $email_body .= "Message:\n$message\n\n";
 $email_body .= "---\n";
 $email_body .= "Submitted: " . date('Y-m-d H:i:s') . "\n";
@@ -150,7 +190,7 @@ try {
     
     // Content
     $mail->isHTML(false);
-    $mail->Subject = 'New Contact Form Submission: ' . $subject;
+    $mail->Subject = $subject; // Use visitor's subject directly
     $mail->Body    = $email_body;
     $mail->CharSet = 'UTF-8';
     

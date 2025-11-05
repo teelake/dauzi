@@ -47,15 +47,14 @@ $from_email = 'no-reply@dauziconsulting.com';
 $from_name = 'Dauzi Consulting Contact Form';
 $smtp_password = 'Temp_Pass123';
 
-// Email subject
-$email_subject = 'New Contact Form Submission: ' . $subject;
+// Email subject (use visitor's subject directly)
+$email_subject = $subject;
 
-// Email body
+// Email body (subject is not included - it's used as email subject)
 $email_body = "New contact form submission from Dauzi Consulting website\n\n";
 $email_body .= "Name: $name\n";
 $email_body .= "Email: $email\n";
-$email_body .= "Phone: " . ($phone ? $phone : 'Not provided') . "\n";
-$email_body .= "Subject: $subject\n\n";
+$email_body .= "Phone: " . ($phone ? $phone : 'Not provided') . "\n\n";
 $email_body .= "Message:\n$message\n\n";
 $email_body .= "---\n";
 $email_body .= "Submitted: " . date('Y-m-d H:i:s') . "\n";
