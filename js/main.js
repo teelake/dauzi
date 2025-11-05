@@ -16,63 +16,92 @@ function loadIncludes() {
     return path.substring(0, lastSlash + 1);
   }
   
+  // Try to load a file with multiple path strategies
+  function loadFile(paths, placeholder, name) {
+    if (!placeholder) {
+      console.error(name + ' placeholder not found');
+      return;
+    }
+    
+    var currentPathIndex = 0;
+    
+    function tryNextPath() {
+      if (currentPathIndex >= paths.length) {
+        console.error('Failed to load ' + name + ' from all attempted paths:', paths);
+        console.error('Current page URL:', window.location.href);
+        console.error('Current pathname:', window.location.pathname);
+        // Show visible error for debugging
+        placeholder.innerHTML = '<!-- Error: Could not load ' + name + ' -->';
+        return;
+      }
+      
+      var currentPath = paths[currentPathIndex];
+      console.log('Attempting to load ' + name + ' from:', currentPath);
+      
+      fetch(currentPath)
+        .then(function(response) {
+          console.log(name + ' fetch response status:', response.status, 'for path:', currentPath);
+          if (!response.ok) {
+            throw new Error('HTTP error! status: ' + response.status);
+          }
+          return response.text();
+        })
+        .then(function(html) {
+          if (html && html.trim()) {
+            console.log(name + ' loaded successfully from:', currentPath);
+            placeholder.outerHTML = html;
+            
+            // Reinitialize after load
+            setTimeout(function() {
+              if (name === 'header') {
+                initMobileMenu();
+                setActiveNavLink();
+              }
+              if (window.lucide && window.lucide.createIcons) {
+                window.lucide.createIcons();
+              }
+            }, 50);
+          } else {
+            throw new Error('File is empty');
+          }
+        })
+        .catch(function(err) { 
+          console.warn('Failed to load ' + name + ' from', currentPath, ':', err.message);
+          currentPathIndex++;
+          tryNextPath();
+        });
+    }
+    
+    tryNextPath();
+  }
+  
   var basePath = getBasePath();
-  var headerPath = basePath + 'includes/header.html';
-  var footerPath = basePath + 'includes/footer.html';
   
-  if (headerPlaceholder) {
-    fetch(headerPath)
-      .then(function(response) {
-        if (!response.ok) {
-          throw new Error('HTTP error! status: ' + response.status);
-        }
-        return response.text();
-      })
-      .then(function(html) {
-        if (html && html.trim()) {
-          headerPlaceholder.outerHTML = html;
-          // Reinitialize mobile menu and icons after header loads
-          setTimeout(function() {
-            initMobileMenu();
-            setActiveNavLink();
-            if (window.lucide && window.lucide.createIcons) {
-              window.lucide.createIcons();
-            }
-          }, 50);
-        } else {
-          console.error('Header file is empty');
-        }
-      })
-      .catch(function(err) { 
-        console.error('Failed to load header from', headerPath, ':', err);
-      });
-  }
+  // Try multiple path strategies
+  var headerPaths = [
+    basePath + 'includes/header.html',
+    '/includes/header.html',
+    'includes/header.html',
+    './includes/header.html'
+  ];
   
-  if (footerPlaceholder) {
-    fetch(footerPath)
-      .then(function(response) {
-        if (!response.ok) {
-          throw new Error('HTTP error! status: ' + response.status);
-        }
-        return response.text();
-      })
-      .then(function(html) {
-        if (html && html.trim()) {
-          footerPlaceholder.outerHTML = html;
-          // Reinitialize icons after footer loads
-          setTimeout(function() {
-            if (window.lucide && window.lucide.createIcons) {
-              window.lucide.createIcons();
-            }
-          }, 50);
-        } else {
-          console.error('Footer file is empty');
-        }
-      })
-      .catch(function(err) { 
-        console.error('Failed to load footer from', footerPath, ':', err);
-      });
-  }
+  var footerPaths = [
+    basePath + 'includes/footer.html',
+    '/includes/footer.html',
+    'includes/footer.html',
+    './includes/footer.html'
+  ];
+  
+  // Remove duplicates
+  headerPaths = headerPaths.filter(function(value, index, self) {
+    return self.indexOf(value) === index;
+  });
+  footerPaths = footerPaths.filter(function(value, index, self) {
+    return self.indexOf(value) === index;
+  });
+  
+  loadFile(headerPaths, headerPlaceholder, 'header');
+  loadFile(footerPaths, footerPlaceholder, 'footer');
 }
 
 function initMobileMenu() {
