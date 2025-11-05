@@ -3,35 +3,57 @@
 // Uses secure config.php for credentials
 // Implements POST-redirect-GET pattern to prevent duplicate submissions
 
+// Start output buffering to prevent headers already sent errors
+ob_start();
+
 // Start session for duplicate submission prevention
 session_start();
 
 // Security: Prevent direct access
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     header('Location: contact.html');
+    ob_end_flush();
     exit;
 }
 
-// Load secure configuration
+// Load secure configuration (must be before any output)
 require_once 'config.php';
 
 // Check if PHPMailer is available
 $phpmailer_available = false;
+$phpmailer_error = '';
+
+// Try to load PHPMailer
 if (file_exists('vendor/autoload.php')) {
-    require 'vendor/autoload.php';
-    if (class_exists('PHPMailer\PHPMailer\PHPMailer')) {
-        $phpmailer_available = true;
+    try {
+        require 'vendor/autoload.php';
+        if (class_exists('PHPMailer\PHPMailer\PHPMailer')) {
+            $phpmailer_available = true;
+        } else {
+            $phpmailer_error = 'PHPMailer class not found after autoload';
+        }
+    } catch (Exception $e) {
+        $phpmailer_error = 'Error loading PHPMailer: ' . $e->getMessage();
+        error_log("PHPMailer Load Error: " . $phpmailer_error);
     }
+} else {
+    $phpmailer_error = 'vendor/autoload.php not found';
+    error_log("PHPMailer not found: vendor/autoload.php missing");
 }
 
-// If PHPMailer not available, use basic mail() as fallback
+// If PHPMailer not available, redirect with error
 if (!$phpmailer_available) {
-    // Fallback: Use basic mail() function
-    require_once 'contact-handler.php';
+    $base_path = dirname($_SERVER['SCRIPT_NAME']);
+    if ($base_path === '/') {
+        $base_path = '';
+    }
+    ob_end_clean();
+    error_log("PHPMailer unavailable: " . $phpmailer_error);
+    header('Location: ' . $base_path . '/contact.html?error=' . urlencode('Email service temporarily unavailable. Please contact us directly at info@dauziconsulting.com'));
     exit;
 }
 
-// Use PHPMailer classes
+// Use PHPMailer classes (must be at top level, not inside if statement)
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
@@ -45,7 +67,12 @@ if (isset($_SESSION['last_submission_hash']) &&
     isset($_SESSION['last_submission_time']) && 
     (time() - $_SESSION['last_submission_time']) < 30) {
     // Duplicate submission detected - redirect without processing
-    header('Location: contact.html?success=1&duplicate=1');
+    $base_path = dirname($_SERVER['SCRIPT_NAME']);
+    if ($base_path === '/') {
+        $base_path = '';
+    }
+    ob_end_clean();
+    header('Location: ' . $base_path . '/contact.html?success=1&duplicate=1');
     exit;
 }
 
@@ -76,7 +103,12 @@ if (empty($message)) {
 }
 
 if (!empty($errors)) {
-    header('Location: contact.html?error=' . urlencode(implode(', ', $errors)));
+    $base_path = dirname($_SERVER['SCRIPT_NAME']);
+    if ($base_path === '/') {
+        $base_path = '';
+    }
+    ob_end_clean();
+    header('Location: ' . $base_path . '/contact.html?error=' . urlencode(implode(', ', $errors)));
     exit;
 }
 
@@ -105,8 +137,8 @@ try {
     $mail->SMTPSecure = SMTP_SECURE === 'ssl' ? PHPMailer::ENCRYPTION_SMTPS : PHPMailer::ENCRYPTION_STARTTLS;
     $mail->Port       = SMTP_PORT;
     
-    // Enable verbose debug output (disable in production)
-    // $mail->SMTPDebug = 2;
+    // Enable verbose debug output for troubleshooting (disable after fixing)
+    $mail->SMTPDebug = 0; // Set to 2 for detailed debug output
     
     // Sender
     $mail->setFrom(EMAIL_FROM, EMAIL_FROM_NAME);
@@ -126,8 +158,10 @@ try {
     $mail_sent = true;
     
 } catch (Exception $e) {
-    // Log error
-    error_log("PHPMailer Error: " . $mail->ErrorInfo);
+    // Log detailed error
+    $error_message = "PHPMailer Error: " . $mail->ErrorInfo;
+    error_log($error_message);
+    error_log("Exception: " . $e->getMessage());
     $mail_sent = false;
 }
 
@@ -156,19 +190,33 @@ if ($mail_sent && $submission_hash) {
 // Generate unique submission token to prevent duplicates
 $submission_token = bin2hex(random_bytes(16));
 
+// Get base path for subdirectory support
+$base_path = dirname($_SERVER['SCRIPT_NAME']);
+if ($base_path === '/') {
+    $base_path = '';
+}
+$redirect_url = $base_path . '/contact.html';
+
 // Store submission success in session (prevents duplicate on refresh)
 if ($mail_sent) {
     $_SESSION['form_submitted'] = true;
     $_SESSION['submission_token'] = $submission_token;
     $_SESSION['submission_time'] = time();
     
+    // Clear output buffer before redirect
+    ob_end_clean();
+    
     // Redirect with token (POST-redirect-GET pattern)
-    header('Location: contact.html?success=1&token=' . $submission_token);
+    header('Location: ' . $redirect_url . '?success=1&token=' . $submission_token);
     exit;
 } else {
     // Store error in session and redirect
     $_SESSION['form_error'] = 'Failed to send message. Please try again or contact us directly.';
-    header('Location: contact.html?error=1');
+    
+    // Clear output buffer before redirect
+    ob_end_clean();
+    
+    header('Location: ' . $redirect_url . '?error=1');
     exit;
 }
 ?>
